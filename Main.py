@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import namedtuple
 from pyllist import dllist, dllistnode
+import heapq
 
 Point = namedtuple('Point', ['x', 'y', 'z'], defaults=[0,0,0])
 
@@ -67,12 +68,16 @@ class LRUCache(Storage):
         return elem
         
         
-class LFUCache(LRUCache):
+class LFUCache():
     
     fastCountStorage = dict()
+    fastSaveStorage = dllist()
+    fastAccessStorage = dict()
     
     def __init__(self):
         self.fastCountStorage = dict()
+        self.fastSaveStorage = dllist()
+        self.fastAccessStorage = dict()
     
     @Storage.convert_params
     def put(self, p: Point):
