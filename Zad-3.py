@@ -11,14 +11,6 @@ class Node(object):
         return self.__str__()
 
 
-left_leaf = Node(23)
-right_leaf = Node(42)
-root = Node(0)
-root.left = left_leaf
-root.right = right_leaf
-tree = root 
-counter = 0
-
 def generate_tree(levels: int) -> Node:
     global counter
     if levels == 0:
@@ -38,9 +30,6 @@ def print_tree(node: Node, level: int = 0):
     print(node)
     print_tree(node.left, level+1)
 
-tree = generate_tree(3)
-print_tree(tree)
-
 def invert_tree(node: Node) -> Node:
     if node is None:
         return
@@ -52,5 +41,16 @@ def invert_tree(node: Node) -> Node:
     node.left = right_inverted
     return node
 
+
+left_leaf = Node(23)
+right_leaf = Node(42)
+root = Node(0)
+root.left = left_leaf
+root.right = right_leaf
+tree = root 
+counter = 0
+
+tree = generate_tree(3)
+print_tree(tree)
 inverted = invert_tree(tree)
 print_tree(inverted)
