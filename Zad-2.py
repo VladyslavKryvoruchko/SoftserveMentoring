@@ -1,9 +1,9 @@
 from random import randrange
 import heapq
 
-testObjects = []
+test_objects = []
 
-def test_objects(threshold:int, heapify_objs):
+def test_object(threshold:int, heapify_objs):
     while heapq.heappop(heapify_objs).strength < threshold-1:
         continue
 
@@ -29,12 +29,12 @@ print("Start")
 for x in range(10):
     o = MyTestObj(randrange(10))
     print(o)
-    testObjects.append(o)
+    test_objects.append(o)
 
 print("heapify & test")
-heapq.heapify(testObjects)
-test_objects(5,testObjects)
+heapq.heapify(test_objects)
+test_object(5,test_objects)
 
 print("result")
-for o in testObjects:
+for o in test_objects:
     print(o)
