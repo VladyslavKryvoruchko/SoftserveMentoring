@@ -1,3 +1,5 @@
+from random import randrange
+
 class Node(object):
     def __init__(self, value: int = None):
         self.value = value
@@ -10,14 +12,10 @@ class Node(object):
     def __repr__(self) -> str:
         return self.__str__()
 
-
 def generate_tree(levels: int) -> Node:
-    global counter
     if levels == 0:
         return None
-
-    counter += 1
-    node = Node(counter)
+    node = Node(randrange(50))
     node.left = generate_tree(levels-1)
     node.right = generate_tree(levels-1)
     return node
@@ -33,24 +31,15 @@ def print_tree(node: Node, level: int = 0):
 def invert_tree(node: Node) -> Node:
     if node is None:
         return
-
     left_inverted = invert_tree(node.left)
     right_inverted = invert_tree(node.right)
-    # Switch places for left and right
     node.right = left_inverted
     node.left = right_inverted
     return node
 
 
-left_leaf = Node(23)
-right_leaf = Node(42)
-root = Node(0)
-root.left = left_leaf
-root.right = right_leaf
-tree = root 
-counter = 0
-
 tree = generate_tree(3)
 print_tree(tree)
+print("---------")
 inverted = invert_tree(tree)
 print_tree(inverted)
